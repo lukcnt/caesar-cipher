@@ -10,11 +10,24 @@ def menu_of_the_program():
                             "1 - To decrypt a message\n"))
     return user_choice
 
+def encrypt(message, shift_number):
+    encrypted_message = ""
+    for letter in message:
+        if letter in ALPHABET:
+            index_letter = ALPHABET.index(letter)
+            encrypted_message += ALPHABET[index_letter + shift_number]
+        else:
+            encrypted_message += letter
+    return encrypted_message
+
 print(art.logo)
 menu = menu_of_the_program()
 if menu != 0 and menu != 1:
     print("This option isn't valid, choose one of the listed options.")
 elif menu == 0:
-    print("Encrypt")
+    message = input("Type your message: ").lower()
+    shift_number = int(input("Type the shift number: "))
+    encrypted_message = encrypt(message, shift_number)
+    print(f"Here's the encrypted message: {encrypted_message}.")
 else:
     print("Decrypt")
