@@ -10,12 +10,25 @@ def menu_of_the_program():
                             "1 - To decrypt a message\n"))
     return user_choice
 
+def index_checker(letter, shift_number):
+    index_letter_encrypted = letter + shift_number
+    if index_letter_encrypted >= len(ALPHABET):
+        while index_letter_encrypted >= len(ALPHABET):
+            index_letter_encrypted -= len(ALPHABET)
+        return index_letter_encrypted
+    elif index_letter_encrypted <= (-(len(ALPHABET))):
+        while index_letter_encrypted <= (-(len(ALPHABET))):
+            index_letter_encrypted += len(ALPHABET)
+        return index_letter_encrypted
+    else:
+        return index_letter_encrypted
+
 def encrypt(message, shift_number):
     encrypted_message = ""
     for letter in message:
         if letter in ALPHABET:
-            index_letter = ALPHABET.index(letter)
-            encrypted_message += ALPHABET[index_letter + shift_number]
+            index_shift_letter = index_checker(letter, shift_number)
+            encrypted_message += ALPHABET[index_shift_letter]
         else:
             encrypted_message += letter
     return encrypted_message
