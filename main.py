@@ -16,18 +16,15 @@ def letter_index_checker(letter, shift_number, function):
     if function == "encode":
         if (letter_index + shift_number) >= len(ALPHABET):
             letter_index_shifted = (letter_index + shift_number) % len(ALPHABET)
-            return letter_index_shifted
         else:
             letter_index_shifted = letter_index + shift_number
-            return letter_index_shifted
     else:
         negative_index_length = (-(len(ALPHABET)))
         if (letter_index - shift_number) < negative_index_length:
             letter_index_shifted = (letter_index - shift_number) % negative_index_length
-            return letter_index_shifted
         else:
             letter_index_shifted = letter_index - shift_number
-            return letter_index_shifted
+    return letter_index_shifted
 
 def encrypt(message, shift_number, function):
     encrypted_message = ""
@@ -67,8 +64,8 @@ while keep_program_running == True:
         shift_number = int(input("Type the shift number: "))
         decrypted_message = decrypt(message, shift_number, function)
         print(f"Here's the decrypted message: {decrypted_message}")
-        
-    user_choice = input("Do you want to encrypt or decrypt another message?"
+
+    user_choice = input("Do you want to encrypt or decrypt another message? "
                         "Type 'yes' if you want, otherwise type 'no'.\n")
     os.system("clear")
     if user_choice == 'no':
