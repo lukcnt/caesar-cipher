@@ -38,6 +38,16 @@ def encrypt(message, shift_number, function):
             encrypted_message += letter
     return encrypted_message
 
+def decrypt(message, shift_number, function):
+    decrypted_message = ""
+    for letter in message:
+        if letter in ALPHABET:
+            shift_letter_index = letter_index_checker(letter, shift_number, function)
+            decrypted_message += ALPHABET[shift_letter_index]
+        else:
+            decrypted_message += letter
+    return decrypted_message
+
 print(art.logo)
 menu = program_menu()
 if menu != 0 and menu != 1:
