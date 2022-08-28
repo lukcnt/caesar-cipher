@@ -1,4 +1,5 @@
 import art
+import os
 
 ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -48,19 +49,27 @@ def decrypt(message, shift_number, function):
             decrypted_message += letter
     return decrypted_message
 
-print(art.logo)
-menu = program_menu()
-if menu != 0 and menu != 1:
-    print("This option isn't valid, choose one of the listed options.")
-elif menu == 0:
-    function = "encode"
-    message = input("Type your message: ").lower()
-    shift_number = int(input("Type the shift number: "))
-    encrypted_message = encrypt(message, shift_number, function)
-    print(f"Here's the encrypted message: {encrypted_message}.")
-else:
-    function = "decode"
-    message = input("Type your message: ").lower()
-    shift_number = int(input("Type the shift number: "))
-    decrypted_message = decrypt(message, shift_number, function)
-    print(f"Here's the decrypted message: {decrypted_message}")
+keep_program_running = True
+while keep_program_running == True:
+    print(art.logo)
+    menu = program_menu()
+    if menu != 0 and menu != 1:
+        print("This option isn't valid, choose one of the listed options.")
+    elif menu == 0:
+        function = "encode"
+        message = input("Type your message: ").lower()
+        shift_number = int(input("Type the shift number: "))
+        encrypted_message = encrypt(message, shift_number, function)
+        print(f"Here's the encrypted message: {encrypted_message}.")
+    else:
+        function = "decode"
+        message = input("Type your message: ").lower()
+        shift_number = int(input("Type the shift number: "))
+        decrypted_message = decrypt(message, shift_number, function)
+        print(f"Here's the decrypted message: {decrypted_message}")
+        
+    user_choice = input("Do you want to encrypt or decrypt another message?"
+                        "Type 'yes' if you want, otherwise type 'no'.\n")
+    os.system("clear")
+    if user_choice == 'no':
+        keep_program_running = False
