@@ -11,14 +11,29 @@ def program_menu():
     return user_choice
 
 def letter_index_checker(letter, shift_number, function):
-
+    letter_index = ALPHABET.index(letter)
+    if function == "encode":
+        if (letter_index + shift_number) >= len(ALPHABET):
+            letter_index_shifted = (letter_index + shift_number) % len(ALPHABET)
+            return letter_index_shifted
+        else:
+            letter_index_shifted = letter_index + shift_number
+            return letter_index_shifted
+    else:
+        negative_index_length = (-(len(ALPHABET)))
+        if (letter_index - shift_number) < negative_index_length:
+            letter_index_shifted = (letter_index - shift_number) % negative_index_length
+            return letter_index_shifted
+        else:
+            letter_index_shifted = letter_index - shift_number
+            return letter_index_shifted
 
 def encrypt(message, shift_number, function):
     encrypted_message = ""
     for letter in message:
         if letter in ALPHABET:
-            index_shift_letter = letter_index_checker(letter, shift_number, function)
-            encrypted_message += ALPHABET[index_shift_letter]
+            shift_letter_index = letter_index_checker(letter, shift_number, function)
+            encrypted_message += ALPHABET[shift_letter_index]
         else:
             encrypted_message += letter
     return encrypted_message
