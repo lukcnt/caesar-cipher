@@ -49,4 +49,8 @@ elif menu == 0:
     encrypted_message = encrypt(message, shift_number, function)
     print(f"Here's the encrypted message: {encrypted_message}.")
 else:
-    print("Decrypt")
+    function = "decode"
+    message = input("Type your message: ").lower()
+    shift_number = int(input("Type the shift number: "))
+    decrypted_message = decrypt(message, shift_number, function)
+    print(f"Here's the decrypted message: {decrypted_message}")
