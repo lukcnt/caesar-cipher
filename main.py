@@ -26,25 +26,15 @@ def letter_index_checker(letter, shift_number, function):
             letter_index_shifted = letter_index - shift_number
     return letter_index_shifted
 
-def encrypt(message, shift_number, function):
-    encrypted_message = ""
+def caesar_cipher_implementer(message, shift_number, function):
+    final_message = ""
     for letter in message:
         if letter in ALPHABET:
             shift_letter_index = letter_index_checker(letter, shift_number, function)
-            encrypted_message += ALPHABET[shift_letter_index]
+            final_message += ALPHABET[shift_letter_index]
         else:
-            encrypted_message += letter
-    return encrypted_message
-
-def decrypt(message, shift_number, function):
-    decrypted_message = ""
-    for letter in message:
-        if letter in ALPHABET:
-            shift_letter_index = letter_index_checker(letter, shift_number, function)
-            decrypted_message += ALPHABET[shift_letter_index]
-        else:
-            decrypted_message += letter
-    return decrypted_message
+            final_message += letter
+    return final_message
 
 keep_program_running = True
 while keep_program_running == True:
@@ -56,17 +46,17 @@ while keep_program_running == True:
         function = "encode"
         message = input("Type your message: ").lower()
         shift_number = int(input("Type the shift number: "))
-        encrypted_message = encrypt(message, shift_number, function)
+        encrypted_message = caesar_cipher_implementer(message, shift_number, function)
         print(f"Here's the encrypted message: {encrypted_message}.")
     else:
         function = "decode"
         message = input("Type your message: ").lower()
         shift_number = int(input("Type the shift number: "))
-        decrypted_message = decrypt(message, shift_number, function)
+        decrypted_message = caesar_cipher_implementer(message, shift_number, function)
         print(f"Here's the decrypted message: {decrypted_message}")
 
     user_choice = input("Do you want to encrypt or decrypt another message? "
-                        "Type 'yes' if you want, otherwise type 'no'.\n")
+                        "Type 'yes' if you want, otherwise type 'no'.\n").lower()
     os.system("clear")
     if user_choice == 'no':
         keep_program_running = False
